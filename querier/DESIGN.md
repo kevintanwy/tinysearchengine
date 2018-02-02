@@ -1,0 +1,9 @@
+# CS50 Tiny Search Engine (TSE) querier design
+
+Kevin Tan, August 2017
+
+This is the querier module that supports the TSE project. 
+
+## Design
+
+Querier loads an index file created an indexer on the directory that is given as an input parameter. The index slots are 0.75 times the number of lines in the index file following Java's hashtable load factor which is an optimal balance between space and search time. The program then takes in stdin from the user and treats the entire entry as individual "and" word segments segments divided "or"s. A document satisfies a conjunction (aka andsequence) wordA and wordB if both wordA and wordB appear in the document. By induction, a document satisfies <andsequence> and wordC if the document satisfies the andsequence and wordC also appears in the document. A document satisfies a disjunction wordA or wordB if either wordA and wordB appear in the document. By induction, a document satisfies <andsequenceA> or <andsequenceB> if the document satisfies the andsequenceB or satisfies andsequenceB, or both. Once we have the list of documents and their counts, the querier program prints the count, document ID and page URL out in decreasing order of importance which is determined by the count number of the document ID. The inbuilt-C library's qsort function was unable to sort the counters even after I put their information into an array of new structs as described in the lab instructions, so I designed a workaround that is admittedly more inefficient. I found the largest count number for the final counters, counted down one by one and printed out the information from counter nodes that had the same count number.
