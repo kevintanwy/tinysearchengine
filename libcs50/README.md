@@ -2,6 +2,7 @@
 
 David Kotz, April 2016, 2017.
 Xia Zhou, July 2016, 2017.
+Kevin Tan, July 2017.
 
 These modules support the TSE project.  Feel free to drop in your implementation of the data-structure modules, but **do not change any of the other source files in this directory.**
 
